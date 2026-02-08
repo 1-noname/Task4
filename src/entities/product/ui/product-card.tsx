@@ -60,7 +60,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </CardContent>
 
       <CardFooter className="p-4 pt-0 mt-auto">
-        <Button className="w-full">ty</Button>
+        <Button className="w-full">Add to cart</Button>
       </CardFooter>
     </Card>
   );
