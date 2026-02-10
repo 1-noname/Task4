@@ -1,4 +1,4 @@
-import type { User } from "@/shared/api/auth"; // Твой интерфейс
+import type { User } from "@/shared/api/auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar";
 import { Badge } from "@/shared/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/card";
