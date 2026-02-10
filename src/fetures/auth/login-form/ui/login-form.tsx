@@ -1,13 +1,16 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { type FormState, loginAction } from "../model/login-action";
+
+import { Alert, AlertDescription } from "@/shared/ui/alert";
 import { Button } from "@/shared/ui/button";
 import { Input } from "@/shared/ui/input";
 import { Label } from "@/shared/ui/label";
-import { Alert, AlertDescription } from "@/shared/ui/alert";
+
+import { type FormState, loginAction } from "../model/login-action";
+
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const initialState: FormState = {
   error: null,

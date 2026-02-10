@@ -1,3 +1,4 @@
+import { CART_CARD_IMAGE_SIZE } from "@/shared/constants/cart";
 import { formatPrice } from "@/shared/lib/currency";
 import { Button } from "@/shared/ui/button";
 
@@ -27,7 +28,7 @@ export const CartCard = ({
           alt={item.title}
           fill
           className="object-contain p-2"
-          sizes="(max-width: 768px) 96px, 120px"
+          sizes={CART_CARD_IMAGE_SIZE}
         />
       </div>
 
