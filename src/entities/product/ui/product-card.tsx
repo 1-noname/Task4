@@ -1,6 +1,7 @@
+import { ReactNode } from "react";
+
 import { CARD_IMAGE_SIZES } from "@/shared/constants/products";
 import { Badge } from "@/shared/ui/badge";
-import { Button } from "@/shared/ui/button";
 import {
   Card,
   CardContent,
@@ -16,9 +17,10 @@ import Image from "next/image";
 
 interface ProductCardProps {
   product: Product;
+  actionButton: ReactNode
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard = ({ product, actionButton }: ProductCardProps) => {
   return (
     <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-all duration-300 group">
       <div className="relative h-48 w-full bg-white border-b">
@@ -60,7 +62,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       </CardContent>
 
       <CardFooter className="p-4 pt-0 mt-auto">
-        <Button className="w-full">Add to cart</Button>
+        {actionButton}
       </CardFooter>
     </Card>
   );
