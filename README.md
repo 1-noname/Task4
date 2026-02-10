@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 🚀 Деплой
 
-## Getting Started
+🔗 **Live demo:**  
+https://guileless-sunburst-6fa2d5.netlify.app/
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📦 О проекте
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Приложение разработано с использованием **Next.js** и построено на архитектурном подходе  
+**Feature-Sliced Design (FSD)**.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Маршрутизация в проекте реализована через **App Router**.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+В корне проекта присутствует пустая директория `page`, которая необходима для того,  
+чтобы Next.js **не использовал `src/pages` и не переключался на Pages Router**,  
+сохраняя работу исключительно через App Router.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Функциональность
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔐 Авторизация
+- Реализована отдельная страница входа
+- Авторизация используется для защиты приватных маршрутов
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🏠 Главная страница
+- Отображение списка продуктов
+- Реализована **ленивая подгрузка данных**
 
-## Deploy on Vercel
+### 🛒 Корзина
+- Состояние корзины реализовано с помощью **Zustand**
+- Корзина **персистентна для каждого пользователя**
+- Состояние сохраняется между сессиями:
+  - можно добавить товары под одним аккаунтом
+  - выйти из него
+  - зайти под другим аккаунтом
+  - затем вернуться обратно и увидеть ранее добавленные товары
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 👤 Профиль пользователя
+- Реализована страница профиля
+- Страница является **защищённым маршрутом**
+- При попытке перейти на `/profile` без авторизации происходит редирект  
+  на страницу авторизации
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🧱 Используемые технологии
+
+- **Next.js (App Router)**
+- **TypeScript**
+- **Zustand**
+- **Feature-Sliced Design (FSD)**
