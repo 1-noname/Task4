@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState, useTransition } from "react";
+
 import type { Product } from "@/entities/product/model/types";
 import { ProductCard } from "@/entities/product/ui/product-card";
-import { fetchProducts } from "../model/fetch-products";
+import { AddToCartButton } from "@/fetures/cart/add-to-cart";
 import { LIMIT } from "@/shared/constants/products";
+
+import { fetchProducts } from "../model/fetch-products";
 
 interface ProductListWidgetProps {
   initialProducts: Product[];
@@ -53,15 +56,15 @@ export const ProductListWidget = ({
   }, [page, hasMore, isPending]);
 
   return (
-    <section className="container py-8">
+    <section className="container p-4">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-3xl font-bold tracking-tight">Products catalog</h2>
-        <span className="text-muted-foreground">АХВЫАХЫВАХЫВХА</span>
+        <span className="text-muted-foreground">Select products</span>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} actionButton={<AddToCartButton product={product} />} />
         ))}
       </div>
 
