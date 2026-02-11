@@ -49,7 +49,7 @@ export const AddToCartButton = ({ product }: AddToCartButtonProps) => {
       onClick={handleClick}
       size="default"
       className={cn(
-        "transition-all duration-300 w-full",
+        "transition-all duration-300 cursor-pointer w-full",
         isSuccess
           ? "bg-green-600 hover:bg-green-700 text-white"
           : ""
