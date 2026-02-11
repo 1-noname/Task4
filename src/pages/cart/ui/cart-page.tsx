@@ -1,9 +1,9 @@
-import { getCurrentUser } from "@/shared/api/auth";
+import { EmptyCart } from "@/entities/cart";
+import { CartSkeleton } from "@/entities/cart";
 import { CartWidget } from "@/widgets/cart";
 
-export const CartPage = async () => {
-  const user = await getCurrentUser()
+export const CartPage = () => {
 
-  return <CartWidget userId={user?.id ?? null} />
+  return <CartWidget emptySlot={<EmptyCart />} skeleton={<CartSkeleton />} />
 
 }
