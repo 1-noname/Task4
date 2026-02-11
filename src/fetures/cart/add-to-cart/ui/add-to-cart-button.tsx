@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 
 import { useCartStore } from "@/entities/cart/model/store";
 import { Product } from "@/entities/product/model/types";
@@ -8,13 +8,15 @@ import { cn } from "@/shared/lib/utils";
 import { Button } from "@/shared/ui/button";
 
 import { Check, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface AddToCartButtonProps {
   product: Product;
 }
 
 export const AddToCartButton = ({ product }: AddToCartButtonProps) => {
-  const addToCart = useCartStore((state) => state.addToCart);
+  const router = useRouter();
+  const { addToCart, activeUserId } = useCartStore()
   const [isSuccess, setIsSuccess] = useState(false);
 
   useEffect(() => {
@@ -29,8 +31,15 @@ export const AddToCartButton = ({ product }: AddToCartButtonProps) => {
     return () => clearTimeout(timeout);
   }, [isSuccess]);
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = (e: MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
+
+    if (activeUserId === "guest") {
+      router.push("/login");
+      return;
+    }
+
     addToCart(product);
     setIsSuccess(true);
   };
@@ -43,7 +52,7 @@ export const AddToCartButton = ({ product }: AddToCartButtonProps) => {
         "transition-all duration-300 w-full",
         isSuccess
           ? "bg-green-600 hover:bg-green-700 text-white"
-          : "",
+          : ""
       )}
     >
       <div className="flex items-center gap-2">
