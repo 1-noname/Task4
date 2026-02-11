@@ -20,15 +20,19 @@ export const Header = async () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" asChild>
-            <Link href="/cart">
-              <ShoppingCart size={22} />
-              <span className="sr-only">Cart</span>
-            </Link>
-          </Button>
+
 
           {user ? (
-            <UserMenu user={user} />
+            <>
+              <Button variant="ghost" size="icon" asChild>
+                <Link href="/cart">
+                  <ShoppingCart size={22} />
+                  <span className="sr-only">Cart</span>
+                </Link>
+              </Button>
+
+              <UserMenu user={user} />
+            </>
           ) : (
             <LoginButton />
           )}
