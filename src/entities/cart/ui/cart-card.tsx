@@ -1,3 +1,5 @@
+'use client'
+
 import { CART_CARD_IMAGE_SIZE } from "@/shared/constants/cart";
 import { formatPrice } from "@/shared/lib/currency";
 import { Button } from "@/shared/ui/button";
