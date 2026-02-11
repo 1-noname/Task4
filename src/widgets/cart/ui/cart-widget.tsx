@@ -7,12 +7,11 @@ import { useCartStore } from "@/entities/cart/model/store";
 import { CartSummary } from "@/fetures/cart/cart-summary";
 
 interface CartWidgetProps {
-  userId: number | null;
   emptySlot: ReactNode;
   skeleton: ReactNode;
 }
 
-export const CartWidget = ({ userId, emptySlot, skeleton }: CartWidgetProps) => {
+export const CartWidget = ({ emptySlot, skeleton }: CartWidgetProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
   const {
@@ -20,22 +19,13 @@ export const CartWidget = ({ userId, emptySlot, skeleton }: CartWidgetProps) => 
     increaseQuantity,
     decreaseQuantity,
     removeFromCart,
-    setActiveUserId,
-    activeUserId,
   } = useCartStore();
-
-  useEffect(() => {
-    setActiveUserId(userId);
-  }, [userId, setActiveUserId]);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const targetId = userId ? String(userId) : "guest";
-  const isSyncing = activeUserId !== targetId;
-
-  if (!isMounted || isSyncing) {
+  if (!isMounted) {
     return <>{skeleton}</>;
   }
 
