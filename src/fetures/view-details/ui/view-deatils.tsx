@@ -16,7 +16,7 @@ export const ViewDetails = ({ id }: ViewDetailsProps) => {
       className="shrink-0"
       title="View Details"
     >
-      <Link href={`/product/${id}`}>
+      <Link href={`/movie/${id}`}>
         <Eye className="h-4 w-4" />
       </Link>
     </Button>

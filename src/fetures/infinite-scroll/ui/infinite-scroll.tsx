@@ -1,53 +1,86 @@
 "use client";
 
-import { useEffect, useRef, useState, useTransition } from "react";
-
-import type { Product } from "@/entities/product/model/types";
-import { ProductCard } from "@/entities/product/ui/product-card";
-import { AddToCartButton } from "@/fetures/cart/add-to-cart";
-import { LIMIT } from "@/shared/constants/products";
-import { fetchProducts } from "@/widgets/product-list/model/fetch-products";
+import { useEffect, useRef, useState } from "react";
+import type { Movie } from "@/entities/movie/model/types";
+import { MovieCard } from "@/entities/movie/ui/movie-card";
+import { ToggleFavoriteButton } from "@/fetures/toggle-favorite/toggle-favorite";
+import { fetchMovies } from "@/widgets/movie-list/model/fetch-movies";
 
 export const InfiniteScroll = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [page, setPage] = useState(2);
   const [hasMore, setHasMore] = useState(true);
-  const [isPending, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
+  
   const triggerRef = useRef<HTMLDivElement>(null);
+  
+  const pageRef = useRef(page);
+  useEffect(() => { pageRef.current = page; }, [page]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore && !isPending) {
-          startTransition(async () => {
-            const newProducts = await fetchProducts(page, LIMIT);
-            if (newProducts.length < LIMIT) setHasMore(false);
+    const trigger = triggerRef.current;
+    if (!trigger) return;
 
-            setProducts((prev) => [...prev, ...newProducts]);
-            setPage((prev) => prev + 1);
-          });
+    console.log("[Observer] Инициализация обсервера");
+
+    const observer = new IntersectionObserver(
+      async (entries) => {
+        // Добавили лог прямо в триггер
+        console.log("[Observer] Срабатывание. isIntersecting:", entries[0].isIntersecting);
+
+        if (entries[0].isIntersecting && hasMore && !isLoading) {
+          console.log(`[Observer] Начинаем грузить страницу ${pageRef.current}...`);
+          setIsLoading(true);
+
+          try {
+            // Вызываем Server Action БЕЗ startTransition
+            const newMovies = await fetchMovies(pageRef.current);
+            console.log("[Observer] Ответ от сервера:", newMovies?.length, "фильмов");
+
+            if (!newMovies || newMovies.length === 0) {
+              setHasMore(false);
+            } else {
+              setMovies((prev) => {
+                const existingIds = new Set(prev.map(m => m.id));
+                const filtered = newMovies.filter(m => !existingIds.has(m.id));
+                return [...prev, ...filtered];
+              });
+              setPage((prev) => prev + 1);
+            }
+          } catch (err) {
+            console.error("[Observer] Ошибка загрузки:", err);
+            setHasMore(false);
+          } finally {
+            setIsLoading(false);
+          }
         }
       },
-      { rootMargin: "200px", threshold: 0.1 }
+      { rootMargin: "200px" }
     );
 
-    if (triggerRef.current) observer.observe(triggerRef.current);
-    return () => observer.disconnect();
-  }, [page, hasMore, isPending]);
+    observer.observe(trigger);
+
+    return () => {
+      console.log("[Observer] Убиваем обсервер");
+      observer.disconnect();
+    };
+  }, [hasMore, isLoading]); 
 
   return (
     <>
-      {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          product={product}
-          actionButton={<AddToCartButton product={product} />}
+      {movies.map((movie) => (
+        <MovieCard
+          key={`infinite-${movie.id}`}
+          movie={movie}
+          renderFavoriteButton={(m) => <ToggleFavoriteButton movie={m} />}
         />
       ))}
 
-      <div ref={triggerRef} className="col-span-full h-20 flex items-center justify-center">
-        {isPending && <span className="text-blue-500 animate-pulse">Loading...</span>}
-        {!hasMore && <span className="text-muted-foreground">Thats all for today.</span>}
+      <div ref={triggerRef} className="col-span-full h-20 flex items-center justify-center border-2 border-dashed border-gray-500">
+        {/* border чисто для дебага триггер */}
+        {isLoading && <span className="text-blue-500 animate-pulse">Loading more movies...</span>}
+        {!hasMore && <span className="text-muted-foreground">That's all for today.</span>}
+        {hasMore && !isLoading && <span>Scroll down to load</span>}
       </div>
     </>
   );

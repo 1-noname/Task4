@@ -7,17 +7,14 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const user = await getCurrentUser()
-  const userId = user ? user.id : null
+  const user = await getCurrentUser();
+  const userId = user ? user.id : null;
 
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-50 dark:bg-black font-sans">
+    <div className="flex min-h-screen flex-col">
       <Header />
       <AuthProvider userId={userId}>
-        <main className="flex-1 flex flex-col items-center justify-center">
-          {children}
-        </main>
-
+        <main className="flex w-full flex-1 flex-col">{children}</main>
       </AuthProvider>
     </div>
   );

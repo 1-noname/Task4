@@ -2,18 +2,20 @@
 
 import { ReactNode, useEffect } from "react";
 
-import { useCartStore } from "@/entities/cart/model/store";
+// Импортируем новый стор для избранного
+import { useFavoriteStore } from "@/entities/favorites/model/store";
 
 interface AuthProviderProps {
   userId: number | null;
-  children: ReactNode
+  children: ReactNode;
 }
 
 export const AuthProvider = ({
   userId,
   children
 }: AuthProviderProps) => {
-  const { setActiveUserId } = useCartStore();
+  // Меняем на функцию из нового стора
+  const { setActiveUserId } = useFavoriteStore();
 
   useEffect(() => {
     setActiveUserId(userId);
