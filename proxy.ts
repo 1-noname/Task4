@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-export default function middleware(request: NextRequest) {
+export default function Proxy(request: NextRequest) {
   const hasToken = request.cookies.has("accessToken");
 
   const isFavoritesPage = request.nextUrl.pathname.startsWith("/favorites");
@@ -20,5 +20,5 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/favorites", "/profile", "/login"],
+  matcher: ["/favorites", "/profile"],
 };

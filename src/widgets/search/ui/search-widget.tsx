@@ -72,7 +72,7 @@ export const SearchWidget = ({ initialQuery, initialType }: SearchWidgetProps) =
         <p className="mt-1 text-sm text-muted-foreground">
           Movies, TV shows, and people — powered by TMDB multi search
         </p>
-      </motionlessDiv>
+      </div>
 
       <form onSubmit={handleSubmit} className="glass-panel space-y-4 rounded-2xl p-4">
         <div className="relative">
@@ -83,7 +83,7 @@ export const SearchWidget = ({ initialQuery, initialType }: SearchWidgetProps) =
             placeholder="Search movies, series, actors..."
             className="h-11 w-full rounded-xl border border-white/10 bg-background/60 pl-10 pr-4 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
-        </motionlessDiv>
+        </div>
         <MediaTypeFilter value={mediaType} onChange={setMediaType} />
         <button
           type="submit"
@@ -96,13 +96,13 @@ export const SearchWidget = ({ initialQuery, initialType }: SearchWidgetProps) =
       {isLoading && (
         <div className="flex justify-center py-16">
           <Loader2 className="size-8 animate-spin text-primary" />
-        </motionlessDiv>
+        </div>
       )}
 
       {!isLoading && hasSearched && filtered.length === 0 && (
         <div className="glass-panel rounded-2xl py-16 text-center text-muted-foreground">
           No results for this query
-        </motionlessDiv>
+        </div>
       )}
 
       {!isLoading && filtered.length > 0 && (
