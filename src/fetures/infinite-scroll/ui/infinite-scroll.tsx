@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
 import type { Movie } from "@/entities/movie/model/types";
 import { MovieCard } from "@/entities/movie/ui/movie-card";
 import { ToggleFavoriteButton } from "@/fetures/toggle-favorite/toggle-favorite";
@@ -11,9 +12,9 @@ export const InfiniteScroll = () => {
   const [page, setPage] = useState(2);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const triggerRef = useRef<HTMLDivElement>(null);
-  
+
   const pageRef = useRef(page);
   useEffect(() => { pageRef.current = page; }, [page]);
 
@@ -64,7 +65,7 @@ export const InfiniteScroll = () => {
       console.log("[Observer] Убиваем обсервер");
       observer.disconnect();
     };
-  }, [hasMore, isLoading]); 
+  }, [hasMore, isLoading]);
 
   return (
     <>
@@ -79,7 +80,7 @@ export const InfiniteScroll = () => {
       <div ref={triggerRef} className="col-span-full h-20 flex items-center justify-center border-2 border-dashed border-gray-500">
         {/* border чисто для дебага триггер */}
         {isLoading && <span className="text-blue-500 animate-pulse">Loading more movies...</span>}
-        {!hasMore && <span className="text-muted-foreground">That's all for today.</span>}
+        {!hasMore && <span className="text-muted-foreground">Thats all for today.</span>}
         {hasMore && !isLoading && <span>Scroll down to load</span>}
       </div>
     </>

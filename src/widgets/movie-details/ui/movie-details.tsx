@@ -1,3 +1,5 @@
+'use client';
+
 import type { MovieDetailsBundle } from "@/entities/movie/model/media";
 import { MovieMeta } from "@/entities/movie/ui/movie-meta";
 import { MovieListRow } from "@/entities/movie/ui/movie-list-row";

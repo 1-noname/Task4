@@ -1,11 +1,12 @@
 "use client";
 
+import { FormEvent, useState } from "react";
+
 import type { SearchMediaType } from "@/entities/movie/model/media";
 import { cn } from "@/shared/lib/utils";
 
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
 
 export const HeaderSearch = () => {
   const router = useRouter();

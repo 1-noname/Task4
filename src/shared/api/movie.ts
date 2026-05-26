@@ -1,3 +1,4 @@
+import type { GenresResponse } from "@/entities/genre/model/types";
 import type { MovieFilters } from "@/entities/movie/model/filters";
 import type {
   MovieCredits,
@@ -7,7 +8,6 @@ import type {
   TrendingTimeWindow,
 } from "@/entities/movie/model/media";
 import type { Movie, MovieResponse } from "@/entities/movie/model/types";
-import type { GenresResponse } from "@/entities/genre/model/types";
 import { extractCertification, type ReleaseDatesPayload } from "@/shared/lib/certification";
 
 const BASE_URL = process.env.TMDB_BASE_URL;
