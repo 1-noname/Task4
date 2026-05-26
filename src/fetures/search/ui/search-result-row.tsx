@@ -2,7 +2,7 @@ import type { SearchMultiItem } from "@/entities/movie/model/media";
 import { cn } from "@/shared/lib/utils";
 import { Badge } from "@/shared/ui/badge";
 
-import { Clapperboard, ChevronRight, Film, Tv, User } from "lucide-react";
+import { ChevronRight, Clapperboard, Film, Tv, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 

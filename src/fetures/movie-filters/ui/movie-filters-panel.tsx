@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState, type ComponentType, type ReactNode } from "react";
+import { type ComponentType, type ReactNode, useCallback, useEffect, useState } from "react";
 
 import type { Genre } from "@/entities/genre/model/types";
 import {

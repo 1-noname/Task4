@@ -1,8 +1,8 @@
 import type { ComponentType, ReactNode } from "react";
 
-import { HeaderSearch } from "@/fetures/header-search/ui/header-search";
 import { LoginButton } from "@/fetures/auth/login-button";
 import { UserMenu } from "@/fetures/auth/user-menu";
+import { HeaderSearch } from "@/fetures/header-search/ui/header-search";
 import { getCurrentUser } from "@/shared/api/auth";
 import { APP_CONTAINER } from "@/shared/constants/layout";
 import { cn } from "@/shared/lib/utils";
