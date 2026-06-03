@@ -13,7 +13,7 @@ import {
 
 import { logoutAction } from "../model/logout";
 
-import { Heart, LogOut } from "lucide-react";
+import { Heart, LogOut, User } from "lucide-react";
 import Link from "next/link";
 
 interface UserMenuProps {
@@ -57,7 +57,10 @@ export const UserMenu = ({ user }: UserMenuProps) => {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild>
-          <Link href="/profile">Profile</Link>
+          <Link href="/profile">
+            <User className="mr-2 h-4 w-4" />
+            Profile
+          </Link>
         </DropdownMenuItem>
 
         <DropdownMenuItem asChild>

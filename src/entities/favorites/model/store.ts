@@ -53,7 +53,7 @@ export const useFavoriteStore = create<FavoritesState>()(
       },
     }),
     {
-      name: 'movie-favorites-storage', // Новое имя в localStorage
+      name: 'movie-favorites-storage',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         favoritesByUserId: state.favoritesByUserId,

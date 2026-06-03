@@ -220,3 +220,27 @@ export const getTvDetails = async (id: string): Promise<TvShow | null> => {
   if (!res.ok) return null;
   return res.json();
 };
+
+export interface PersonDetails {
+  id: number;
+  name: string;
+  biography: string;
+  birthday: string | null;
+  deathday: string | null;
+  place_of_birth: string | null;
+  profile_path: string | null;
+  known_for_department: string;
+  movie_credits?: {
+    cast: Movie[];
+  };
+}
+
+export const getPersonDetails = async (id: string): Promise<PersonDetails | null> => {
+  const res = await fetch(
+    `${BASE_URL}/person/${id}?language=en-US&append_to_response=movie_credits`,
+    fetchOptions
+  );
+
+  if (!res.ok) return null;
+  return res.json();
+};

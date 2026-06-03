@@ -16,7 +16,7 @@ function getTitle(item: SearchMultiItem): string {
 function getHref(item: SearchMultiItem): string {
   if (item.media_type === "movie") return `/movie/${item.id}`;
   if (item.media_type === "tv") return `/tv/${item.id}`;
-  return `/?cast=${item.id}&castName=${encodeURIComponent(getTitle(item))}`;
+  return `/person/${item.id}`;
 }
 
 function getImage(item: SearchMultiItem): string | null {

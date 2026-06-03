@@ -7,7 +7,7 @@ import { getCurrentUser } from "@/shared/api/auth";
 import { APP_CONTAINER } from "@/shared/constants/layout";
 import { cn } from "@/shared/lib/utils";
 
-import { Clapperboard, Heart, Search, User } from "lucide-react";
+import { Clapperboard, Gamepad2, Heart, Search, User } from "lucide-react";
 import Link from "next/link";
 
 export const Header = async () => {
@@ -27,24 +27,8 @@ export const Header = async () => {
 
         <HeaderSearch />
 
-        <nav className="hidden items-center gap-1 lg:flex">
-          <NavLink href="/" icon={Clapperboard}>
-            Catalog
-          </NavLink>
-          <NavLink href="/search" icon={Search}>
-            Search
-          </NavLink>
-          {user && (
-            <>
-              <NavLink href="/favorites" icon={Heart}>
-                Favorites
-              </NavLink>
-              <NavLink href="/profile" icon={User}>
-                Profile
-              </NavLink>
-            </>
-          )}
-        </nav>
+        <Link href="/roulette">Roulette</Link>
+        <Link href="/quiz">Quiz Game</Link>
 
         <div className="ml-auto flex shrink-0 items-center gap-3">
           {user ? <UserMenu user={user} /> : <LoginButton />}
@@ -54,25 +38,3 @@ export const Header = async () => {
   );
 };
 
-function NavLink({
-  href,
-  icon: Icon,
-  children,
-}: {
-  href: string;
-  icon: ComponentType<{ className?: string }>;
-  children: ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground",
-        "transition-colors hover:bg-white/5 hover:text-foreground"
-      )}
-    >
-      <Icon className="size-4 text-primary/80" />
-      {children}
-    </Link>
-  );
-}

@@ -1,11 +1,12 @@
 'use client';
 
 import type { MovieDetailsBundle } from "@/entities/movie/model/media";
-import { MovieMeta } from "@/entities/movie/ui/movie-meta";
 import { MovieListRow } from "@/entities/movie/ui/movie-list-row";
+import { MovieMeta } from "@/entities/movie/ui/movie-meta";
 import { CastCarousel } from "@/fetures/cast-carousel";
-import { TrailerPlayer } from "@/fetures/trailer-player";
+import { MovieRating } from "@/fetures/rate-movie/ui/movie-rating";
 import { ToggleFavoriteButton } from "@/fetures/toggle-favorite/toggle-favorite";
+import { TrailerPlayer } from "@/fetures/trailer-player";
 import { APP_CONTAINER } from "@/shared/constants/layout";
 import { cn } from "@/shared/lib/utils";
 
@@ -60,6 +61,7 @@ export const MovieDetailsWidget = ({
             </div>
 
             <TrailerPlayer videos={videos} title={movie.title} />
+            <MovieRating movieId={movie.id} />
 
             <div className="glass-panel rounded-2xl p-5">
               <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-violet-300/90">
