@@ -12,9 +12,9 @@ export const HomePage = async ({ castId, castName }: HomePageProps) => {
     ...DEFAULT_MOVIE_FILTERS,
     ...(castId
       ? {
-          castId: Number(castId),
-          castName: castName ? decodeURIComponent(castName) : undefined,
-        }
+        castId: Number(castId),
+        castName: castName ? decodeURIComponent(castName) : undefined,
+      }
       : {}),
   };
 
@@ -39,7 +39,7 @@ export const HomePage = async ({ castId, castName }: HomePageProps) => {
       catalogSubtitle={
         castId
           ? "Filtered by cast from TMDB discover"
-          : "Popular movies right now — /trending/movie/week"
+          : "Popular movies right now"
       }
     />
   );

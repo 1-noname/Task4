@@ -1,6 +1,6 @@
 import { EmptyFavorites, FavoritesSkeleton } from "@/entities/favorites";
-import { buildGenreMap } from "@/shared/lib/genres";
 import { getGenres } from "@/shared/api/movie";
+import { buildGenreMap } from "@/shared/lib/genres";
 import { FavoritesWidget } from "@/widgets/favorite-widget";
 
 export const FavoritePage = async () => {

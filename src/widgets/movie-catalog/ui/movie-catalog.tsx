@@ -13,8 +13,8 @@ import { MovieListRow } from "@/entities/movie/ui/movie-list-row";
 import { MovieFiltersPanel } from "@/fetures/movie-filters";
 import { ToggleFavoriteButton } from "@/fetures/toggle-favorite/toggle-favorite";
 import { APP_CONTAINER } from "@/shared/constants/layout";
-import { cn } from "@/shared/lib/utils";
 import { buildGenreMap } from "@/shared/lib/genres";
+import { cn } from "@/shared/lib/utils";
 import { discoverMoviesAction } from "@/widgets/movie-catalog/model/discover-movies";
 
 import { Loader2 } from "lucide-react";

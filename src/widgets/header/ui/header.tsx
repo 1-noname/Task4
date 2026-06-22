@@ -1,5 +1,3 @@
-import type { ComponentType, ReactNode } from "react";
-
 import { LoginButton } from "@/fetures/auth/login-button";
 import { UserMenu } from "@/fetures/auth/user-menu";
 import { HeaderSearch } from "@/fetures/header-search/ui/header-search";
